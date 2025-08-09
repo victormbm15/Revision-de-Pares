@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import ProductList from './ProductList';
+import ProductList from './Components/ProductList';
 import Cart from './Cart';
 
 const App = () => {
