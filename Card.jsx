@@ -1,10 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../redux/cartSlice';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+  const handleRemove = (index) => {
+    dispatch(removeFromCart(index));
+  };
 
   return (
     <div style={styles.container}>
@@ -16,9 +22,12 @@ const Cart = () => {
           {cartItems.map((item, index) => (
             <li key={index} style={styles.item}>
               <img src={item.image} alt={item.name} style={styles.image} />
-              <div>
+              <div style={{ flex: 1 }}>
                 <strong>{item.name}</strong> - ${item.price}
               </div>
+              <button style={styles.removeBtn} onClick={() => handleRemove(index)}>
+                ❌
+              </button>
             </li>
           ))}
         </ul>
@@ -52,6 +61,14 @@ const styles = {
     height: '50px',
     borderRadius: '5px',
     objectFit: 'cover',
+  },
+  removeBtn: {
+    backgroundColor: '#ff4d4d',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '5px 8px',
+    cursor: 'pointer',
   },
 };
 
