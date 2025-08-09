@@ -1,18 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import ProductList from './components/ProductList';
-import Cart from './components/Cart';
+import React from 'react';
+import ProductList from './ProductList';
+import Cart from './Card';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </Router>
+    <div>
+      <h1 style={{ textAlign: 'center' }}>🌱 EventPlanner - Tienda de Plantas</h1>
+      <ProductList />
+      <Cart />
+    </div>
   );
-}
+};
 
 export default App;
