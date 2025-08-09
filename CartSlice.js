@@ -54,3 +54,17 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+const initialState = JSON.parse(localStorage.getItem('cart')) || [];
+
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      state.push(action.payload);
+    },
+    removeFromCart: (state, action) => {
+      return state.filter((_, index) => index !== action.payload);
+    },
+  },
+});
